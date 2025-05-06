@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import FilaTarea from "./FilaTareas";
 
 const Formulario = () => {
-  const [tareas, setTareas] = useState([]); // Estado para almacenar las tareas
+  const [tareas, setTareas] = useState([]);
   const [tarea, setTarea] = useState("");
   const [prioridad, setPrioridad] = useState("");
   const [momento, setMomento] = useState("");
@@ -16,34 +17,33 @@ const Formulario = () => {
 
     const nuevaTarea = {
       id: Date.now(),
-      tarea,
+      texto: tarea,
       prioridad,
       momento,
     };
 
-    setTareas([...tareas, nuevaTarea]); // Agregar la nueva tarea al estado
-    setTarea(""); // Limpiar el campo de texto
-    setPrioridad(""); // Limpiar el selector
-    setMomento(""); // Limpiar el campo de fecha
+    setTareas([...tareas, nuevaTarea]);
+    setTarea("");
+    setPrioridad("");
+    setMomento("");
+  };
+
+  const handleBorrar = (id) => {
+    setTareas(tareas.filter((t) => t.id !== id));
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="tarea_nueva"></label>
         <input
           type="text"
-          id="tarea_nueva"
-          maxLength="40"
           placeholder="Introduce nueva tarea"
           value={tarea}
-          onChange={(e) => setTarea(e.target.value)} // Actualizar el estado de la tarea
+          onChange={(e) => setTarea(e.target.value)}
         />
         <select
-          name="prioridad"
-          id="selector_prioridades"
           value={prioridad}
-          onChange={(e) => setPrioridad(e.target.value)} // Actualizar el estado de la prioridad
+          onChange={(e) => setPrioridad(e.target.value)}
         >
           <option value="" disabled>
             Selecciona la prioridad
@@ -55,16 +55,12 @@ const Formulario = () => {
         </select>
         <input
           type="datetime-local"
-          id="momento"
           value={momento}
-          onChange={(e) => setMomento(e.target.value)} // Actualizar el estado de la fecha
+          onChange={(e) => setMomento(e.target.value)}
         />
-        <button type="submit" id="aniadir_tarea">
-          Añadir
-        </button>
+        <button type="submit">Añadir</button>
       </form>
 
-      {/* Renderizar las tareas en una tabla */}
       <h2>Lista de Tareas</h2>
       <table>
         <thead>
@@ -72,20 +68,16 @@ const Formulario = () => {
             <th>Tarea</th>
             <th>Prioridad</th>
             <th>Fecha</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           {tareas.map((t) => (
-            <tr key={t.id}>
-              <td>{t.tarea}</td>
-              <td>{t.prioridad}</td>
-              <td>{t.momento}</td>
-            </tr>
+            <FilaTarea key={t.id} tarea={t} onBorrar={handleBorrar} />
           ))}
         </tbody>
       </table>
     </div>
   );
 };
-
 export default Formulario;

@@ -9,14 +9,17 @@ function App() {
   const agregarTarea = (nuevaTarea) => {
     setTareas([...tareas, { ...nuevaTarea, id: Date.now() }]);
   };
+  const borrarTarea = (id) => {
+    setTareas(tareas.filter((tarea) => tarea.id !== id));
+  };
 
   return (
     <>
       <div className="container">
         <h1>Gestor de tareas</h1>
         <Formulario onAgregarTareas={agregarTarea} />
-        <h2>Tareas pendientes</h2>
-        <TablaTareas tareas={tareas} />
+
+        <TablaTareas tareas={tareas} onBorrarTarea={borrarTarea} />
       </div>
     </>
   );

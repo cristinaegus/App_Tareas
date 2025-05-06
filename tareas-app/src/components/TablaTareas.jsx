@@ -1,20 +1,12 @@
 import React from "react";
 import FilaTarea from "./FilaTareas";
 
-const TablaTareas = ({ tareas }) => {
+const TablaTareas = ({ tareas, onBorrarTarea }) => {
   return (
     <table>
-      <thead>
-        <tr>
-          <th>Descripción</th>
-          <th>Prioridad</th>
-          <th>Fecha</th>
-          <th>Borrar</th>
-        </tr>
-      </thead>
       <tbody>
         {tareas.map((tarea) => (
-          <FilaTarea tarea={tarea} tareas={tareas} />
+          <FilaTarea key={tarea.id} tarea={tarea} onBorrar={onBorrarTarea} />
         ))}
       </tbody>
     </table>
