@@ -124,6 +124,9 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  text-underline-position: under;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
 }
 
 th,
