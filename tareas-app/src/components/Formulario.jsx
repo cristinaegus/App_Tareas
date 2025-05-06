@@ -48,10 +48,9 @@ const Formulario = () => {
           <option value="" disabled>
             Selecciona la prioridad
           </option>
-          <option value="muy_baja">Tarea poco importante</option>
-          <option value="baja">Tarea Normal</option>
-          <option value="media">Tarea Importante</option>
           <option value="alta">Tarea Urgente</option>
+          <option value="media">Tarea Media</option>
+          <option value="baja">Tarea Baja</option>
         </select>
         <input
           type="datetime-local"
@@ -64,6 +63,9 @@ const Formulario = () => {
       <h2>Lista de Tareas</h2>
       <table>
         <thead>
+          <tr className="table-primary">
+            <th colSpan="4">Tareas</th>
+          </tr>
           <tr>
             <th>Tarea</th>
             <th>Prioridad</th>

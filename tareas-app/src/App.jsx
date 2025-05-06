@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Formulario from "./components/Formulario";
 import TablaTareas from "./components/TablaTareas";
-import "./App.css";
+import "./estilos/App.css";
 
 function App() {
   const [tareas, setTareas] = useState([]);
